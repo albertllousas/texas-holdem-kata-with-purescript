@@ -16,8 +16,8 @@ type AllHands = (List Hand)
 type Winners = (List Hand)
 
 format :: AllHands -> Winners -> String
-format allHands winners =  toMultiline ((\hand -> formatHand hand winners) <$> allHands)
-  where toMultiline lines = foldl (\line acc -> if(acc == "") then line else line <> "\n" ) "" lines
+format allHands winners = toMultiline ((\hand -> formatHand hand winners) <$> allHands)
+  where toMultiline lines = foldl (\line acc -> if(acc == "") then (line <> "\n") else (acc <> "\n" <> line) ) "" lines -- pending todo
 
 formatHand :: Hand -> Winners -> String
 formatHand (Fold allCards) _ = formatCards allCards

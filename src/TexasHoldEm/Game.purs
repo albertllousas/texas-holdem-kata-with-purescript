@@ -113,7 +113,7 @@ instance compareBestCombination :: Ord BestCombination where
           scoreCards cards = if (isStraightStartingWithAce cards) then 15
                              else sum (map multiplyRepeated (groupAll (cards <#> rank <#> fromEnum )))
 
--- painful deriving in
+-- painful deriving in purescript
 derive instance ordRanking :: Ord Ranking
 derive instance eqRanking :: Eq Ranking
 derive instance eqHand :: Eq Hand
