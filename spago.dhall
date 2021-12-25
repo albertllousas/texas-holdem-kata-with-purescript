@@ -20,6 +20,7 @@ to generate this file without the comments in this block.
   , "enums"
   , "exceptions"
   , "foldable-traversable"
+  , "integers"
   , "lists"
   , "maybe"
   , "newtype"

@@ -25,7 +25,7 @@ kCombinations k (h:t) = withHead `union` withoutHead
         withoutHead = kCombinations k t
 
 isConsecutive :: forall a. BoundedEnum a => Eq a => List a -> Boolean
-isConsecutive (x:y:xs) = (fromEnum x == (fromEnum y) -1) && isConsecutive xs
+isConsecutive (x:y:xs) = (fromEnum x == (fromEnum y) -1) && isConsecutive (y:xs)
 isConsecutive _ = true
 
 listOf :: forall a. Array a -> List a

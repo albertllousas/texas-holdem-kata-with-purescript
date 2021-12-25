@@ -13,8 +13,6 @@ import Data.String.CodeUnits (charAt, length, toCharArray, fromCharArray)
 import Data.Maybe (Maybe)
 import Data.List (fromFoldable)
 import Data.List.Types (List)
-import Control.Monad.Reader (Reader, runReader)
-import Control.Monad.Reader.Class (ask)
 
 type MultiLineGame = String
 
@@ -30,16 +28,15 @@ defaultParserConfig = {
     parseSuite: parseSuite
 }
 
-parse = (\game -> runReader (parseMultiLineGame game) defaultParserConfig)
+parse = parseMultiLineGame defaultParserConfig
 
-parseMultiLineGame :: MultiLineGame -> Reader ParserConfig (Either GameError (List (List Card)))
-parseMultiLineGame game = do
-  config <- ask
+parseMultiLineGame ::  ParserConfig -> MultiLineGame -> Either GameError (List (List Card))
+parseMultiLineGame config game = do
   let lines = split (Pattern "\n") game
   let trimedLines = trim <$> lines
   let nonEmptyLines = filter (\l-> notEq l "") trimedLines
   let parsedLines = (parseSingleLine config) <$> nonEmptyLines
-  pure (sequence (fromFoldable parsedLines))
+  sequence (fromFoldable parsedLines)
 
 parseSingleLine :: ParserConfig -> String -> Either GameError (List Card)
 parseSingleLine config line = do
