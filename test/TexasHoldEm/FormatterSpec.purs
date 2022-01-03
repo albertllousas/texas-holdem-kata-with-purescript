@@ -16,6 +16,7 @@ import TexasHoldEm.Formatter (formatHand)
 import TexasHoldEm.Game (Hand(..))
 import TexasHoldEm.Game (BestCombination(..))
 import TexasHoldEm.Game (Ranking(..))
+import TexasHoldEm.Formatter (format)
 
 spec :: Spec Unit
 spec =
@@ -54,26 +55,8 @@ spec =
         let winners = hand : Nil
         formatHand hand winners `shouldEqual` "Tc Qh Kd Jc 9c Straight (winner)"
 
---
---    describe "parse a matrix of cards" do
---
---       it "should parse a matrix of cards from a valid multiline string" do
---         let multiLineGame = """
---           Kc 9s
---           Ah
---         """
---         let expectedAnswer = List.fromFoldable (
---          List.fromFoldable ((Card King Clubs):(Card Nine Spades):[]):
---          List.fromFoldable ((Card Ace Hearts):[]):
---          []
---         )
---         parse multiLineGame `shouldEqual` Right expectedAnswer
---
---       it "should fail parsing a matrix of cards from an invalid multiline string" do
---         let multiLineGame = """
---           invalid
---           Ah
---         """
---         parse multiLineGame `shouldEqual` Left (InvalidCard "invalid")
-
-
+      it "should format a list of hands" do
+        let winner = FinalHand (BestCombination Straight ((Ten*Clubs):(Queen*Hearts):(King*Diamonds):(Jack*Clubs):(Nine*Clubs):Nil)) ((Ten*Clubs):(Queen*Hearts):(King*Diamonds):(Jack*Clubs):(Nine*Clubs):Nil)
+        let hand = FinalHand (BestCombination ThreeOfAKind ((Ten*Clubs):(Ten*Hearts):(Ten*Diamonds):(Jack*Clubs):(Nine*Clubs):Nil)) ((Ten*Clubs):(Ten*Hearts):(Ten*Diamonds):(Jack*Clubs):(Nine*Clubs):Nil)
+        let winners = winner : Nil
+        format (winner : hand : Nil) winners `shouldEqual` "Tc Qh Kd Jc 9c Straight (winner)\nTc Th Td Jc 9c ThreeOfAKind"
