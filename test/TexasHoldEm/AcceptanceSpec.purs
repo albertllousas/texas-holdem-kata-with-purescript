@@ -8,6 +8,12 @@ import Test.Spec.Assertions (shouldEqual)
 import TexasHoldEm.Game (calculateHands, determineWinners)
 import TexasHoldEm.Formatter (format)
 import TexasHoldEm.Parser (parse)
+import Data.String.Pattern (Pattern(..))
+import Data.String.Common (trim)
+import Data.Array (filter, intercalate)
+import Data.String.Common (split)
+
+inline multiline = intercalate "\n" (filter (\l-> notEq l "") (trim <$> (split (Pattern "\n") multiline)))
 
 spec :: Spec Unit
 spec =
@@ -29,11 +35,11 @@ spec =
            pure $ format hands winners
 
       let expectedOutput = """
-        Kc 9s Ks Kd 9d 3c 6d Full House (winner)
-        9c Ah Ks Kd 9d 3c 6d Two Pair
+        Kc 9s Ks Kd 9d 3c 6d FullHouse (winner)
+        9c Ah Ks Kd 9d 3c 6d TwoPair
         Ac Qc Ks Kd 9d 3c
         9h 5s
         4d 2d Ks Kd 9d 3c 6d Flush
         7s Ts Ks Kd 9d
       """
-      output `shouldEqual` (Right expectedOutput)
+      output `shouldEqual` (Right $ inline expectedOutput)
