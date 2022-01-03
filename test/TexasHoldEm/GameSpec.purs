@@ -119,7 +119,7 @@ spec =
 
     describe "compare best combinations of a two different hands (ranking with their corresponding cards)" do
 
-      it "should compare by rank when rankins are different" do
+      it "should compare by rank when rankings are different" do
         let onePair = BestCombination OnePair Nil
         let twoPair = BestCombination TwoPair Nil
         compare onePair twoPair `shouldEqual` LT

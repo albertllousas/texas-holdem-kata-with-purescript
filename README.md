@@ -102,7 +102,7 @@ game » compare hands
   ✓︎ a final hand should be greater than a fold
   ✓︎ two final hands should compared using their best combinations
 game » compare best combinations of a two different hands (ranking with their corresponding cards)
-  ✓︎ should compare by rank when rankins are different
+  ✓︎ should compare by rank when rankings are different
   ✓︎ if two hands hold Royal Flush, the pot is divided
   ✓︎ if two hands hold the same straight flush, the pot is divided
   ✓︎ if two hands hold straight flush, then the higher ranking straight flush wins
