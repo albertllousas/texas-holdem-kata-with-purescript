@@ -10,15 +10,7 @@ import Test.Spec.Assertions (shouldEqual)
 import TexasHoldEm.Generic (kCombinations)
 import Data.List as List
 import Data.List.Types (List(..))
-import TexasHoldEm.Game (Rank(..), Suite(..), (*), Ranking(..), rankCards)
-import TexasHoldEm.Game (isFlush)
-import TexasHoldEm.Game (isStraight)
-import TexasHoldEm.Game (calculateHand)
-import TexasHoldEm.Game (Hand(..))
-import TexasHoldEm.Game (GameError(..))
-import TexasHoldEm.Game (BestCombination(..))
-import TexasHoldEm.Game (Card(..))
-import TexasHoldEm.Game (determineWinners)
+import TexasHoldEm.Game (Rank(..), Suite(..), (*), Ranking(..), Hand(..), GameError(..), BestCombination(..), Card(..), isFlush, isStraight,calculateHand, determineWinners, rankCards)
 
 spec ::Spec Unit
 spec =
